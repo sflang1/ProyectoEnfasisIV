@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <head>
+        <title>Error - Not Found</title>
+        <meta name="viewport" content="width=device-width"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link href="error.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <c:if test="#{usuarioMB.validado}">
+            <META http-equiv="REFRESH" CONTENT="0,url=admin.xhtml"/>
+        </c:if>
+        <c:if test="#{!usuarioMB.validado}">
+            <div>
+                <h:outputText value="#{usuarioMB.mensaje}"/>
+                <br/>
+                <a href="index.xhtml">Volver al menú de autenticación</a>
+            </div>
+        </c:if>
+    </body>
+</html>

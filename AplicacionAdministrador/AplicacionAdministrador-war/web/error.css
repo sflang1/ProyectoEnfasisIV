@@ -1,0 +1,30 @@
+body
+{	
+    background-image: url('recursos/error.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+div
+{
+	color: white;
+	font-size: 2.8em;
+	margin-top: 13em;
+	text-align: center;
+}
+a:link 
+{
+    color:#800000;
+    text-decoration: none;
+}
+
+a:visited 
+{
+    color: #800000;
+    text-decoration: none;
+}
+
+a:hover 
+{
+    color: #66FF66;
+    text-decoration: none;
+}

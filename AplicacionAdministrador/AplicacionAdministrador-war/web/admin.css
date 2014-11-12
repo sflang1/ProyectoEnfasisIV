@@ -1,0 +1,60 @@
+body
+{
+    background-image: url('recursos/fondo1.jpg');	
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color:#cccccc;
+}
+#cerrar
+{
+    height: 2.5em;
+    background-color: #333333;
+    opacity: 0.9;
+    text-align: right;
+    color: #66E0C2;
+    padding-right: 2em;
+    padding-top: 0.5em;
+    font-size: 1.2em;
+}
+.subrayado
+{
+    text-decoration: underline;
+}
+#titulo
+{
+    text-align: center;
+}
+#wrapper
+{
+    margin:0 auto 0 auto;
+    text-align: center;
+}
+#mensaje
+{
+    text-align: center;
+}
+#tabla
+{
+    margin:0 auto 0 auto;
+    text-align: center;
+    border-spacing: 150px 10px;
+}
+a:link {
+    color:#800000;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #800000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #66FF66;
+    text-decoration: none;
+}
+#seleccionar
+{
+    margin:0 auto;
+}

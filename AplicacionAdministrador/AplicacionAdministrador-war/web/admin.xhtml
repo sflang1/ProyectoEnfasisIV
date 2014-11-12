@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Sistema de administración de titulares</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width"/>
+        <link href="admin.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <c:if test="#{usuarioMB.validado}">
+            <div id="cerrar">
+                ¿No eres tú? Inicia sesión nuevamente
+                <h:form>
+                    <h:commandLink action="#{usuarioMB.cerrarSesion()}">Cerrar sesión</h:commandLink>
+                </h:form>
+            </div>
+            <div id="titulo">
+                <h2>Modificación de los titulares del día</h2>
+                Bienvenido, <h:outputText value="#{usuarioMB.sesionAdministrador.nombre} #{usuarioMB.sesionAdministrador.apellido}"/><br/>
+                Puede agregar titulares del día anterior seleccionándolos y presionando la flecha.<br/>
+                También, puede agregar nuevos campos de texto para agregar nuevos titulares.<br/>
+                <span class="subrayado">Sin embargo, agregue únicamente los campos necesarios, 
+                si un campo se queda sin llenar, el formulario no se enviará y deberá repetir el proceso.
+                </span>
+            </div>
+            <div id="wrapper">
+                <h:form id="form" enctype="multipart/form-data">
+                    <table id="tabla">
+                        <tr>
+                            <td>
+                                <h3>
+                                    Titulares del día <h:outputText value="#{usuarioMB.diaayer}"/>/
+                                    <h:outputText value="#{usuarioMB.mesayer}"/>/
+                                    <h:outputText value="#{usuarioMB.agnoayer}"/>
+                                </h3>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <h3>
+                                    Titulares del día <h:outputText value="#{usuarioMB.diahoy}"/>/
+                                    <h:outputText value="#{usuarioMB.meshoy}"/>/
+                                    <h:outputText value="#{usuarioMB.agnohoy}"/>
+                                </h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="titularesviejos">
+                                    <c:if test="#{!usuarioMB.vacio}">
+                                        <table id="seleccionar">
+                                            <tr>
+                                                <td>
+                                                    Seleccionar todos
+                                                </td>
+                                                <td>
+                                                    <h:selectBooleanCheckbox value="#{usuarioMB.todos}"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </c:if>
+                                    <h:dataTable value="#{usuarioMB.titularesviejosaux}" var="titulares">
+                                        <h:column>
+                                            <h:outputText value="#{titulares.t.titular}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:inputHidden value="#{titulares.t.titular}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:selectBooleanCheckbox value="#{titulares.checked}"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </td>
+                            <td>
+                                <h:commandButton id="boton" style="width: 100px; height: 80px;" actionListener="#{usuarioMB.pasar()}" image="recursos/flecha.png"/>
+                            </td>
+                            <td>
+                                <div id="titularespasados">
+                                    <h:dataTable value="#{usuarioMB.titularespasados}" var="pasados">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Orden de aparición
+                                            </f:facet>
+                                            <h:outputText value="#{pasados.orden}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:outputText value="#{pasados.titular}"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                                <div id="titularesnuevos">
+                                    <h:dataTable value="#{usuarioMB.titularesnuevosaux}" var="tits">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Orden de aparición
+                                            </f:facet>
+                                            <h:outputText value="#{tits.t.orden}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:inputText value="#{tits.t.titular}" />
+                                        </h:column>
+                                        <h:column>
+                                            <h:inputFile value="#{tits.file}"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                                
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <h:commandButton style="margin-left: 5px;margin-right: 5px;" action="#{usuarioMB.agregarTitulares()}" value="Agregar nuevo titular"/>
+                    <h:commandButton style="margin-left: 5px;margin-right: 5px;" actionListener="#{usuarioMB.enviarTitulares()}" value="Enviar titulares"/>
+                </h:form>
+            </div>
+            <div id="mensaje">
+                <h:outputText value="#{usuarioMB.mensaje}"/>
+            </div>
+        </c:if>
+        <c:if test="#{!usuarioMB.validado}">
+            <script>
+                alert("No tienes permiso para ver este contenido");
+            </script>
+            <META http-equiv="REFRESH" CONTENT="0,url=index.xhtml"/>
+        </c:if>
+    </body>
+</html>
