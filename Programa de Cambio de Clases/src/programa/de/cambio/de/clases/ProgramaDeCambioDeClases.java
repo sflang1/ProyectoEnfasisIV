@@ -7,8 +7,10 @@
 package programa.de.cambio.de.clases;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -28,8 +30,10 @@ public class ProgramaDeCambioDeClases
         try
         {
             File file=new File("C:\\Users\\Asus Pc\\Desktop\\Proyectos Sebastián\\Enfasis IV\\PrimerXlet\\src\\org\\university\\unicauca\\tdi\\scene\\HS_welcome.java");
+            File escritura=new File("C:\\Users\\Asus Pc\\Desktop\\Servidor\\HS_welcome.java");
             FileReader fr=new FileReader(file);
-            BufferedReader br=new BufferedReader(fr);    
+            BufferedReader br=new BufferedReader(fr);
+            BufferedWriter bw=new BufferedWriter(new FileWriter(escritura));
             String buffer="";
             String cadena="";
             String cadena2="";
@@ -44,8 +48,11 @@ public class ProgramaDeCambioDeClases
                     System.out.println(cadena2);
                     System.out.println(buffer);
                 }
+                bw.write(buffer+"\n");
                 cadena=cadena+"\n"+buffer;
             }
+            bw.flush();
+            bw.close();
         }
         catch(Exception ex)
         {
