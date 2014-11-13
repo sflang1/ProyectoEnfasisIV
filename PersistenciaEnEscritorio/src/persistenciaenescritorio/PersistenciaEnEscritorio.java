@@ -23,17 +23,37 @@ public class PersistenciaEnEscritorio {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) 
+    public static void main(String[] args) throws InterruptedException 
     {
+        int contador=0,i;
         EntityManagerFactory emf=Persistence.createEntityManagerFactory("PersistenciaEnEscritorioPU");
         EntityManager em=emf.createEntityManager();
         EntityTransaction tx=em.getTransaction();
         tx.begin();
-        Query query=em.createNamedQuery("Titular.findAll");
+        Query query=em.createQuery("SELECT t FROM Titular t ORDER BY t.orden");
         List<Titular> titulares=query.getResultList();
-        for(int i=0;i<titulares.size();i++)
+        while(true)
         {
-            System.out.println(titulares.get(i).getTitular());
+            //Reproducir video en el orden contador hacer todos los cambios en el oc-update
+            query=em.createQuery("SELECT t FROM Titular t ORDER BY t.orden");
+            titulares=query.getResultList();
+            if(titulares.isEmpty())
+            {
+                System.out.println("No hay titulares");
+            }
+            else
+            {
+                contador++;
+                System.out.println("Contador: "+contador);
+                System.out.println("Comparado con: "+(titulares.get(titulares.size()-1).getOrden()));
+                if(contador>=(titulares.get(titulares.size()-1).getOrden()))
+                {
+                    System.out.println("Entra a la comparación");
+                    contador=0;
+                }
+                System.out.println("Nuevo titular a revisar: "+titulares.get(contador).getTitular());
+            }
+            Thread.sleep(5000);
         }
     }
     
