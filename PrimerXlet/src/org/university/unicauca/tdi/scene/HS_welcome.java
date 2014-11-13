@@ -6,12 +6,12 @@
 
 package org.university.unicauca.tdi.scene;
 
-import static com.sun.glass.ui.Cursor.setVisible;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
-import javafx.event.ActionEvent;
-import javafx.scene.input.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
 import org.havi.ui.HComponent;
@@ -36,8 +36,8 @@ public class HS_welcome extends HComponent implements Escena, HKeyListener,
 	private HScene scene;
 	private AppXlet principal;
 
-	// COMPONENTES DE LA ESCENA DE INGRESO
-	private static final String LB_SIGNIN_MSG = "Para ingresar al sistema especifique su nombre";
+	// COMPONENTES DE LA ESCENA DE INGRESO ###
+	private static final String LB_SIGNIN_MSG = "Para ingresar al sistema especifique su nombre";//###
 	private static final String LB_SIGNIN_NAME = "Nombre: ";
 	private static final String BT_SIGNIN = "Ingresar";
 	private HStaticText lbMsg;
@@ -149,7 +149,7 @@ public class HS_welcome extends HComponent implements Escena, HKeyListener,
 	}
 
     @Override
-    public void keyTyped(java.awt.event.KeyEvent key) {
+    public void keyTyped(KeyEvent key) {
         System.out.println("estoy en la ventana principal metodo keylistener: "
 				+ key.getKeyCode());
 		switch (key.getKeyCode()) {
@@ -163,18 +163,15 @@ public class HS_welcome extends HComponent implements Escena, HKeyListener,
     }
 
     @Override
-    public void keyPressed(java.awt.event.KeyEvent key) {
+    public void keyPressed(KeyEvent key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void keyReleased(java.awt.event.KeyEvent key) {
+    public void keyReleased(KeyEvent key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void actionPerformed(java.awt.event.ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 }
