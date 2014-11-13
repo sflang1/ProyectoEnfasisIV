@@ -53,6 +53,22 @@ public class ProgramaDeCambioDeClases
             }
             bw.flush();
             bw.close();
+            //Compilación
+            String com="javac -cp "
+                    + ".;\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\javatv.jar\""
+                    + ";\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\mhpstubs.jar\""
+                    + ";\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\jmf.jar\""
+                    + ";\"C:\\Users\\Desktop\\Proyectos Sebastián\\Enfasis IV\\Primer Xlet\\src\" "
+                    + "\"C:\\Users\\Asus PC\\Desktop\\Servidor\\HS_welcome.java\"";
+            System.out.println(com);
+            Process p=Runtime.getRuntime().exec(com);
+            InputStream is=p.getErrorStream();
+            byte[] buff=new byte[4096];
+            int bytesleidos;
+            while((bytesleidos=is.read(buff))!=-1)
+            {
+                System.out.println((char) bytesleidos);
+            }
         }
         catch(Exception ex)
         {
