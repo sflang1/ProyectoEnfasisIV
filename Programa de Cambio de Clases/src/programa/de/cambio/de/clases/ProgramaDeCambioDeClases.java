@@ -25,6 +25,13 @@ public class ProgramaDeCambioDeClases
     /**
      * @param args the command line arguments
      */
+    public static final String libjavatv="\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\javatv.jar\"";
+    public static final String libjmf="\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\mhpstubs.jar\"";
+    public static final String mhpstubs="\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\jmf.jar\"";
+    public static final String dirXlet="\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\PrimerXlet\\src\" ";
+    public static final String claseacompilar="\"C:\\Users\\Asus PC\\Desktop\\Servidor\\HS_welcome.java\"";
+    public static final String movera="\"C:\\Users\\Asus PC\\Desktop\\Carpeta pegada";
+    public static final String nombreclase="HS_welcome.java";
     public static void main(String[] args) 
     {
         try
@@ -54,12 +61,7 @@ public class ProgramaDeCambioDeClases
             bw.flush();
             bw.close();
             //Compilación
-            String com="javac -cp "
-                    + ".;\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\javatv.jar\""
-                    + ";\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\mhpstubs.jar\""
-                    + ";\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\libs\\jmf.jar\""
-                    + ";\"C:\\Users\\Asus PC\\Desktop\\Proyectos Sebastián\\Enfasis IV\\PrimerXlet\\src\" "
-                    + "\"C:\\Users\\Asus PC\\Desktop\\Servidor\\HS_welcome.java\"";
+            String com="javac -cp "+".;"+libjavatv+";"+libjmf+";"+mhpstubs+";"+dirXlet+" "+claseacompilar;
             System.out.println(com);
             Process p=Runtime.getRuntime().exec(com);
             BufferedReader readInput = new BufferedReader(new InputStreamReader(p.getErrorStream()));
@@ -68,6 +70,43 @@ public class ProgramaDeCambioDeClases
             {
                 System.out.println(linea);
             }
+            String ubicacionclass=claseacompilar.replace(".java", ".class").replace("\"", "").replace("\\", "/");
+            System.out.println(ubicacionclass);
+            File claseacopiar=new File(ubicacionclass);
+            String ubicaciondestino=movera+"\\"+nombreclase.replace(".java", ".class")+"\"";
+            ubicaciondestino=ubicaciondestino.replace("\"","").replace("\\","/");
+            System.out.println(ubicaciondestino);
+            File clasedestino=new File(ubicaciondestino);
+            if(clasedestino.exists())
+            {
+                System.out.println("El fichero en el destino ya existe. Borrando....");
+                clasedestino.delete();
+            }
+            if(!claseacopiar.exists())
+            {
+                System.out.println("No hay clase de origen");
+            }
+            Thread.sleep(20000);
+            boolean success=claseacopiar.renameTo(clasedestino);
+            if(!success)
+            {
+                System.out.println("No se pudo copiar");
+            }
+            /*if(clasedestino.exists())
+            {
+                System.out.println("El fichero en el destino ya existe. Borrando....");
+                clasedestino.delete();
+            }
+            boolean success=claseacopiar.renameTo(clasedestino);
+            if(!success)
+            {
+                System.out.println("No se pudo copiar");
+            }
+            if(!claseacopiar.exists())
+            {
+                System.out.println("No hay clase de origen");
+            }
+            */
         }
         catch(Exception ex)
         {
