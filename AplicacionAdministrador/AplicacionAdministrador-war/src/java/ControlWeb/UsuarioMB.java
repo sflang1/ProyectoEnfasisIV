@@ -174,7 +174,6 @@ public class UsuarioMB
             }
             for(i=0;i<titularespasados.size();i++)
             {
-                titularespasados.get(i).setCommited(true);
                 if(!tejb.agregarTitular(titularespasados.get(i)))
                 {
                     mensaje="Error creando el titular: "+titularespasados.get(i).getTitular();
@@ -211,7 +210,6 @@ public class UsuarioMB
             {
                 if(titularesviejosaux.get(i).isChecked())
                 {
-                    titularesviejosaux.get(i).getT().setCommited(true);
                     titularesviejosaux.get(i).getT().setOrden(ordentotal);
                     titularespasados.add(titularesviejosaux.get(i).getT());
                     vec.add(titularesviejosaux.get(i).getT());
