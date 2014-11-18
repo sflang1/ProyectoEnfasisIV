@@ -164,6 +164,7 @@ public class UsuarioMB
             a=tejb.borrarTodo();
             for(i=0;i<titularesnuevos.size();i++)
             {
+                titularesnuevos.get(i).setCommited(false);
                 if(!tejb.agregarTitular(titularesnuevos.get(i)))
                     {
                         mensaje="Error creando el titular: "+titularesnuevos.get(i).getTitular();
@@ -173,6 +174,7 @@ public class UsuarioMB
             }
             for(i=0;i<titularespasados.size();i++)
             {
+                titularespasados.get(i).setCommited(true);
                 if(!tejb.agregarTitular(titularespasados.get(i)))
                 {
                     mensaje="Error creando el titular: "+titularespasados.get(i).getTitular();
