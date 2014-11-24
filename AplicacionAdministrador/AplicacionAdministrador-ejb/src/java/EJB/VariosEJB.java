@@ -51,4 +51,18 @@ public class VariosEJB {
             ex.printStackTrace();
         }
     }
+    public void hayCambios()
+    {
+        try
+        {
+            Query query=em.createQuery("SELECT v FROM Varios v WHERE v.descripcion='cambios'");
+            Varios v=(Varios) query.getSingleResult();
+            v.setValor("1");
+            em.merge(v);
+        }
+        catch(Exception ex)
+        {
+            
+        }
+    }
 }
