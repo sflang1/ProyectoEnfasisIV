@@ -181,6 +181,7 @@ public class UsuarioMB
                     break;
                 }
             }
+            vejb.hayCambios();
             if(!error)
             {
                 mensaje="B.D actualizada exitosamente";
@@ -286,14 +287,14 @@ public class UsuarioMB
             String filename=getFilename(file);
             String tipo=filename.substring((filename.indexOf('.')+1),filename.length());
             System.out.println(tipo);
-            if(tipo.equals("avi"))
+            if(tipo.equals("mp4"))
             {
                 mensaje="";
                 int cont=vejb.obtenerContador();
                 InputStream stream=file.getInputStream();
-                String direccion="C:\\Users\\Asus Pc\\Desktop\\Servidor\\video"+cont+"."+tipo;
+                String direccion="C:\\xampp\\htdocs\\ProyectoEnfasisIV\\videos\\video"+cont+"."+tipo;
                 titularesnuevosaux.get(pos).getT().setUbicacion(direccion);
-                FileOutputStream outputstream=new FileOutputStream("C:\\Users\\Asus Pc\\Desktop\\Servidor\\video"+cont+"."+tipo);
+                FileOutputStream outputstream=new FileOutputStream("C:\\xampp\\htdocs\\ProyectoEnfasisIV\\videos\\video"+cont+"."+tipo);
                 byte[] buffer=new byte[4096];
                 while(true)
                 {
@@ -315,7 +316,7 @@ public class UsuarioMB
             }
             else
             {
-                mensaje="Tipo no permitido. Sólo se permite carga de archivos .avi";
+                mensaje="Tipo no permitido. Sólo se permite carga de archivos .mp4";
                 ordentotal=0;
                 return false;
             }
